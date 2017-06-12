@@ -5,18 +5,27 @@ import (
 	"fmt"
 )
 
+var (
+	tagsFlag string
+
+	tags map[string]string
+)
+
 type GlobalMetrics struct {
 	System SystemMetrics
-	Docker DockerContainerMetrics
+	Docker []DockerMetrics
 }
 
 func main() {
-	g := GlobalMetrics{
+	/*g := GlobalMetrics{
 		System: GetSystemMetrics(),
 		Docker: GetDockerMetrics(),
 	}
-
 	print(g)
+	*/
+
+	fmt.Println(GetCPUMetrics())
+	//fmt.Println(GetNetMetrics())
 }
 
 func print(i interface{}) {

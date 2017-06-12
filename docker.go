@@ -13,12 +13,12 @@ type DockerMetrics struct {
 
 func GetDockerMetrics() []DockerMetrics {
 	dockerStat, _ := docker.GetDockerStat()
-	m := make([]DockerContainerMetrics, len(dockerStat))
+	m := make([]DockerMetrics, len(dockerStat))
 
 	for i, c := range dockerStat {
 		cpu, _ := docker.CgroupCPUDocker(c.ContainerID)
 		mem, _ := docker.CgroupMemDocker(c.ContainerID)
-		m[i] = DockerContainerMetrics{
+		m[i] = DockerMetrics{
 			Info: &c,
 			CPU:  cpu,
 			Mem:  mem,
